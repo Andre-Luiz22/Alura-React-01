@@ -1,6 +1,6 @@
 .colaborador {
+  position: relative;
   width: 280px;
-  filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.18));
 }
 
 .colaborador .cabecalho {
@@ -12,6 +12,7 @@
   border-radius: 50%;
   position: relative;
   bottom: -50px;
+  z-index: 1;
 }
 
 .colaborador .rodape {
@@ -19,6 +20,7 @@
   border-radius: 0 0 10px 10px;
   padding-top: 90px;
   padding-bottom: 40px;
+  filter: drop-shadow(5px 5px 15px rgba(0, 0, 0, 0.18));
 }
 
 .colaborador .rodape h4 {
@@ -26,4 +28,14 @@
   font-size: 18px;
   line-height: 22px;
   padding: 0 16px;
+}
+
+.deletar {
+  position: absolute;
+  right: -10px;
+  top: -10px;
+}
+
+.favoritar {
+  margin-top: 15px;
 }

@@ -1,11 +1,15 @@
 .time {
   text-align: center;
+  position: relative;
   padding: 32px;
 }
 
 .time h3 {
   font-size: 32px;
-
-  position: relative;
 }
 
+.input-cor {
+  position: absolute;
+  top: 20px;
+  right: 50px;
+}

@@ -1,27 +1,46 @@
 import { Colaborador } from "../Colaborador";
 import "./time.css";
 import { PropTypes } from "prop-types";
+import hexToRgba from "hex-to-rgba";
 
 export const Time = ({
   nomeTime,
-  corPrimaria,
-  corSecundaria,
+  cor,
   colaboradores,
+  aoDeletar,
+  mudarCor,
+  id,
+  aoFavoritar
 }) => {
-  console.log(colaboradores);
   return (
     colaboradores.length > 0 && (
-      <section style={{ backgroundColor: corSecundaria }} className="time">
+      <section
+        style={{ backgroundColor: hexToRgba(cor, "0.6") }}
+        className="time"
+      >
+        <input
+          className="input-cor"
+          value={cor}
+          type="color"
+          onChange={(e) => mudarCor(e.target.value, id)}
+        />
         <h3>{nomeTime}</h3>
         <div
           style={{
             margin: "0 auto 32px",
-            backgroundColor: corPrimaria,
+            backgroundColor: cor,
             width: "50px",
             height: "4px",
           }}
         ></div>
-        <div style={{ width: "100%", height: "300px", overflowX: "auto" }}>
+        <div
+          style={{
+            width: "100%",
+            height: "fit-content",
+            overflowX: "auto",
+            padding: "10px 0",
+          }}
+        >
           <div
             style={{
               display: "flex",
@@ -30,15 +49,21 @@ export const Time = ({
               gap: "20px",
             }}
           >
-            {colaboradores.map((colaborador) => (
-              <Colaborador
-                key={colaborador.nome}
-                nome={colaborador.nome}
-                imagem={colaborador.imagem}
-                cargo={colaborador.cargo}
-                corCard={corPrimaria}
-              />
-            ))}
+            {colaboradores.map((colaborador) => {
+              return (
+                <Colaborador
+                  key={colaborador.nome}
+                  nome={colaborador.nome}
+                  imagem={colaborador.imagem}
+                  cargo={colaborador.cargo}
+                  favorito={colaborador.favorito}
+                  corCard={cor}
+                  aoDeletar={aoDeletar}
+                  id={colaborador.id}
+                  aoFavoritar={aoFavoritar}
+                />
+              );
+            })}
           </div>
         </div>
       </section>
@@ -48,7 +73,10 @@ export const Time = ({
 
 Time.propTypes = {
   nomeTime: PropTypes.string,
-  corPrimaria: PropTypes.string,
-  corSecundaria: PropTypes.string,
+  cor: PropTypes.string,
   colaboradores: PropTypes.array,
+  aoDeletar: PropTypes.func,
+  mudarCor: PropTypes.func,
+  id: PropTypes.string,
+  aoFavoritar: PropTypes.func
 };

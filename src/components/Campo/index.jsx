@@ -1,7 +1,8 @@
-import "./CampoTexto.css";
+import "./Campo.css";
 import PropTypes from "prop-types";
 
-export const CampoTexto = ({
+export const Campo = ({
+  type = "text",
   label,
   placeholder,
   obrigatorio,
@@ -13,9 +14,10 @@ export const CampoTexto = ({
     aoAlterado(e.target.value);
   };
   return (
-    <div className="campo-texto">
+    <div className={`campo campo-${type}`}>
       <label>{label}</label>
       <input
+        type={type}
         value={valor}
         onChange={aoDigitado}
         required={obrigatorio}
@@ -25,10 +27,11 @@ export const CampoTexto = ({
   );
 };
 
-CampoTexto.propTypes = {
+Campo.propTypes = {
   label: PropTypes.string,
   placeholder: PropTypes.string,
   obrigatorio: PropTypes.bool,
   valor: PropTypes.string,
   aoAlterado: PropTypes.func,
+  type: PropTypes.string,
 };
